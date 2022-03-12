@@ -8,7 +8,7 @@
 
                 <div class="card-header text-center bg-white">                
                     <div class="mb-1 p-3">
-                        <img src="{{asset('storage/limu_logo/limu_icon.png')}}" class="img-fluid" alt="Image">
+                        <img src="{{ asset('storage\limu_logo\limu_icon.png') }}" class="img-fluid" alt="Image">
                     </div>
                 </div>
 

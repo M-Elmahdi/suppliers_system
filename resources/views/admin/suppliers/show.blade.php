@@ -10,7 +10,7 @@
 </div> 
 <!-- End Page Name -->
 
-<div class="container my-3">
+<div class="container my-3 pb-5">
     <div class="row">
         <div class="col-md-4">
             <div class="card p-3 rounded">
@@ -43,6 +43,46 @@
                         </table>
                         <!-- End Content Table -->
                     </div>
+                </div>
+            </div>
+
+            <div class="mt-3 card p-3 rounded">
+
+                <div class="row">
+
+                    <div>ملحقات المُورد</div>
+                    <div class="mt-2">
+                        <ul class="list-group">
+                            @foreach ($supplier->attatchments as $file)
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            {{$file->name}}
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <form method="GET" action="{{ route('supplier.download.file', $file) }}">
+                                                        <div class="text-start">
+                                                            <button class="btn btn-sm btn-primary">تحميل</button> 
+                                                        </div>
+                                                            
+                                                    </form>
+                                                        
+                                                </div>
+
+                                                {{-- <div class="col">
+                                                    <button class="btn btn-danger btn-sm">حذف</button>
+                                                </div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>    
+                            @endforeach
+                        </ul>    
+                    </div>
+                       
                 </div>
             </div>
         </div>

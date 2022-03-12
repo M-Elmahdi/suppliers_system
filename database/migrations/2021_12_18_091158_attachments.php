@@ -15,10 +15,11 @@ class Attachments extends Migration
     {
         Schema::create('attachments', function(Blueprint $table){
             $table->id();
+            $table->string('name');
             $table->string('path');
             $table->string('extension');
             $table->string('mime_type');
-            $table->foreignId('supplier_id')->constrained('users')
+            $table->foreignId('supplier_id')->constrained('suppliers')
                 ->onUpdate('NO ACTION')
                 ->onDelete('NO ACTION');
             $table->timestamps();

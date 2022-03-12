@@ -26,6 +26,10 @@ class Supplier extends Model
         return $this->belongsToMany(Activity::class, 'supplier_activities', 'supplier_id');
     }
 
+    public function attatchments(){
+        return $this->hasMany(Attatchment::class);
+    }
+
     public function rating(){
         return $this->belongsTo(SupplierRating::class, 'supplier_rating_id');
     }

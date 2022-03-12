@@ -10,7 +10,7 @@
 </div> 
 <!-- End Page Name -->
 
-<div class="container my-3">
+<div class="container my-3 pb-5">
     <div class="row">
         <div class="col-md-4">
             <div class="card p-3 rounded">
@@ -41,7 +41,8 @@
                             </form>
 
                             <!-- Content table -->
-                            <table class="table table-hover">
+
+                            <table class="table table-hover mt-4">
                                 <thead>
                                 <tr>
                                     <th scope="col">نشاطات مسجلة</th>
@@ -52,16 +53,79 @@
                                     @foreach ($supplier->supplier_activities as $activity)
                                     <tr>
                                         <td>{{ $activity->activity_name }}</td>
-                                        <td></td>      
+                                        <td>
+                                            <form method="POST" action="{{ route('supplier.activity.delete', [$supplier, $activity]) }}">
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm" >حذف</button>  
+                                            </form> 
+                                        </td>      
                                     </tr> 
                                     @endforeach
                                 </tbody>
                             </table>
                             <!-- End Content Table -->
-
                         </div>
                     </div>
                 </div>
+
+                <!-- Attatchments -->
+                <div class="mt-3 card p-3 rounded">
+                    <div>ملحقات المُورد</div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col form-group">
+                            <!-- File attachemnt -->
+                            <form method="POST" enctype="multipart/form-data" 
+                            action="{{ route('supplier.upload.file', $supplier) }}">
+                                @csrf
+                                <label for="file" class="mb-2">ملحق</label>
+                                <input type="file" class="form-control" name="file" aria-describedby="fileHelp">
+                                <div id="fileHelp" class="form-text">حجم الملف يجب ان لا يتعدى 5 ميجابايت</div>
+                                    @error('file')
+                                        <div class="alert text-sm alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    @enderror
+                                <button class="btn btn-primary mt-2">رفع الملحق</button>
+                            </form>
+                            <!-- End of File attachemnt -->
+                        </div>
+                    </div>
+
+                    <div class="row form-group m-3">
+
+                        <h5 class="mb-3 mt-3">قائمة الملحقات</h5>
+                        <ul class="list-group">
+                            @foreach ($supplier->attatchments as $file)
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            {{$file->name}}
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <form method="GET" action="{{ route('supplier.download.file', $file) }}">
+                                                        <div class="text-start">
+                                                            <button class="btn btn-sm btn-primary">تحميل</button> 
+                                                        </div>
+                                                          
+                                                    </form>
+                                                     
+                                                </div>
+
+                                                {{-- <div class="col">
+                                                    <button class="btn btn-danger btn-sm">حذف</button>
+                                                </div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>    
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Attatchments -->
             </div>
 
         <div class="col">

@@ -72,10 +72,12 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        $supplier = Supplier::with('supplier_activities', 'rating')->find($id);
+        $supplier = Supplier::with('supplier_activities', 'rating')
+            ->with('attatchments')
+            ->find($id);
 
         return view('admin.suppliers.show')
-                    ->with('supplier', $supplier);
+            ->with('supplier', $supplier);
     }
 
     /**
@@ -86,14 +88,18 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $supplier = Supplier::with('supplier_activities')->find($id);
+        $supplier = Supplier::with('supplier_activities')
+            ->with('attatchments')
+            ->find($id);
         $activities = Activity::all();
         $ratings = SupplierRating::all();
 
+        //dd($supplier);
+
         return view('admin.suppliers.edit')
-                    ->with('supplier', $supplier)
-                    ->with('activities', $activities)
-                    ->with('ratings', $ratings);
+            ->with('supplier', $supplier)
+            ->with('activities', $activities)
+            ->with('ratings', $ratings);
     }
 
     /**
