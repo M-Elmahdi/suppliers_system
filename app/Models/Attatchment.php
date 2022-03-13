@@ -11,6 +11,10 @@ class Attatchment extends Model
 
     protected $table = 'attachments';
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }

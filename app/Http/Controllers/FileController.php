@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attatchment;
 use App\Models\Supplier;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FileController extends Controller
@@ -45,7 +46,9 @@ class FileController extends Controller
             'path' => $full_path,
             'supplier_id' => $supplier->id,
             'mime_type' => $file->getClientMimeType(),
-            'extension' => $file->getClientOriginalExtension()
+            'extension' => $file->getClientOriginalExtension(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         return redirect()->route('suppliers.edit', $supplier->id)

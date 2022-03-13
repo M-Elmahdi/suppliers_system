@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user_types = [
-            'Admin', 'User'
+            'Admin'
         ];
 
         foreach($user_types as $type){

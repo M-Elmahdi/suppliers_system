@@ -98,8 +98,8 @@
                             @foreach ($supplier->attatchments as $file)
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <div class="col">
-                                            {{$file->name}}
+                                        <div class="col-md-8">
+                                            {{ $file->name }}
                                         </div>
 
                                         <div class="col">
@@ -119,6 +119,10 @@
                                                 </div> --}}
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="row border rounded bg-light">
+                                        <small>تاريخ الرفع: {{ $file->created_at }}</small> 
                                     </div>
                                 </li>    
                             @endforeach

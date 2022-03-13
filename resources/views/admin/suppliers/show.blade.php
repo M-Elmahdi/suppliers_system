@@ -66,17 +66,15 @@
                                                     <form method="GET" action="{{ route('supplier.download.file', $file) }}">
                                                         <div class="text-start">
                                                             <button class="btn btn-sm btn-primary">تحميل</button> 
-                                                        </div>
-                                                            
-                                                    </form>
-                                                        
+                                                        </div>      
+                                                    </form> 
                                                 </div>
-
-                                                {{-- <div class="col">
-                                                    <button class="btn btn-danger btn-sm">حذف</button>
-                                                </div> --}}
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="row border rounded bg-light">
+                                        <small>تاريخ الرفع: {{ $file->created_at }}</small> 
                                     </div>
                                 </li>    
                             @endforeach
